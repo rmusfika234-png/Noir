@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>NOIR রেস্টুরেন্ট | ফাইন ডাইনিং</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Hind+Siliguri:wght@300;400;500&family=Noto+Serif+Bengali:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c9a45c;--gold2:#e6c987;--bg:#000;--bg2:#101010;--card:#171717;--text:#ece8df;--muted:#a09a8d;--serif:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;--sans:'Hind Siliguri','Montserrat',Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--text);font:300 1rem/1.75 var(--sans);overflow-x:hidden}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15}
+h2{font-size:clamp(2.1rem,7vw,3.2rem);color:var(--gold)}
+.wrap{max-width:1100px;margin:0 auto}
+.sec{padding:5rem 1.25rem}.alt{background:var(--bg2)}
+.center{text-align:center}
+.line{width:60px;height:1px;background:var(--gold);margin:1.2rem auto 2rem}.line.l{margin-left:0}
+.btn{display:inline-block;padding:.95rem 2.2rem;border:1px solid var(--gold);background:none;color:var(--gold);font:400 .8rem var(--sans);letter-spacing:.18em;cursor:pointer;transition:.3s}
+.btn:hover,.btn:focus-visible{background:var(--gold);color:#000}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;z-index:100;transition:.4s}
+.nav.solid{background:rgba(0,0,0,.95);border-bottom:1px solid rgba(201,164,92,.2)}
+.logo{font:600 1.8rem var(--serif);letter-spacing:.25em;color:var(--gold)}
+.burger{background:none;border:0;display:flex;flex-direction:column;gap:6px;padding:10px;cursor:pointer;z-index:101}
+.burger i{width:26px;height:2px;background:var(--gold);transition:.3s}
+.burger.on i:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger.on i:nth-child(2){opacity:0}
+.burger.on i:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.links{position:fixed;top:0;right:-100%;width:75%;max-width:320px;height:100vh;background:#000;border-left:1px solid rgba(201,164,92,.25);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;transition:right .4s}
+.links.on{right:0}
+.links a{font-size:.85rem;letter-spacing:.18em;transition:color .3s}
+.links a:hover,.links a.act{color:var(--gold)}
+.links .cta{border:1px solid var(--gold);color:var(--gold);padding:.6rem 1.4rem}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.25rem 4rem;
+background:linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.88)),url('grill.jpg') center/cover no-repeat,radial-gradient(circle at 50% 35%,#3b2f18,#000 70%)}
+.hero-in{max-width:760px;animation:up 1.4s ease both}
+.hero h1{font-size:clamp(2.8rem,11vw,5.8rem);margin:.5rem 0 1.2rem}
+.hero h1 em{color:var(--gold);font-weight:500}
+.hero p{color:var(--muted);margin-bottom:2.2rem}
+.kicker{color:var(--gold);font-size:.78rem;letter-spacing:.3em}
+
+/* MENU */
+.grid{display:grid;gap:1.5rem}
+.dish{background:var(--card);border:1px solid rgba(201,164,92,.15);overflow:hidden;transition:.4s}
+.dish:hover{border-color:var(--gold)}
+.pic{height:230px;background:linear-gradient(135deg,#33270f,#120e06) center/cover no-repeat;transition:transform .7s}
+.dish:hover .pic{transform:scale(1.06)}
+.box{position:relative;background:var(--card);padding:1.3rem}
+.row{display:flex;justify-content:space-between;gap:1rem}
+.row h3{font-size:1.45rem}.price{font:600 1.5rem var(--serif);color:var(--gold)}
+.box p{color:var(--muted);font-size:.9rem}
+
+/* ABOUT */
+.two{display:grid;gap:2.5rem;align-items:center}
+.photo{height:340px;border:1px solid var(--gold);outline:1px solid rgba(201,164,92,.3);outline-offset:10px;background:linear-gradient(135deg,#33270f,#120e06) center/cover no-repeat}
+.two p{color:var(--muted);margin-bottom:1rem}
+.stats{display:flex;gap:2rem;margin-top:1.5rem}
+.stats b{display:block;font:600 2.3rem var(--serif);color:var(--gold)}
+.stats span{font-size:.78rem;color:var(--muted)}
+
+/* OFFERS */
+.offer{background:var(--card);border:1px solid rgba(201,164,92,.2);padding:2.2rem 1.5rem;text-align:center;position:relative}
+.offer.hot{border-color:var(--gold);background:linear-gradient(#251c0b,var(--card))}
+.offer h3{font-size:1.7rem}.offer .big{font:600 2.4rem var(--serif);color:var(--gold)}
+.offer small{font:300 .75rem var(--sans);color:var(--muted)}
+.offer p:last-child{color:var(--muted);font-size:.9rem}
+.tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-size:.68rem;letter-spacing:.12em;padding:.25rem .9rem;font-weight:500;white-space:nowrap}
+
+/* CONTACT */
+.info li{margin-bottom:1.2rem;color:var(--muted)}
+.info b{display:block;color:var(--gold);font-size:.8rem;letter-spacing:.15em;font-weight:500}
+.info a:hover{color:var(--gold)}
+form{display:flex;flex-direction:column;gap:1rem}
+input,select{background:#000;border:1px solid rgba(201,164,92,.3);color:var(--text);padding:.95rem 1rem;font:300 1rem var(--sans);border-radius:0;color-scheme:dark}
+input:focus,select:focus{outline:none;border-color:var(--gold)}
+#msg{color:var(--gold);font-size:.9rem;min-height:1.5em}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 1.25rem 2rem;border-top:1px solid rgba(201,164,92,.2)}
+footer p{color:var(--muted);margin:.5rem 0 1.2rem}
+.soc{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem;font-size:.85rem;color:var(--muted)}
+.soc a:hover{color:var(--gold)}
+footer small{color:#666}
+
+/* ANIMATION */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}
+.rv.in{opacity:1;transform:none}
+@keyframes up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* TABLET + DESKTOP */
+@media(min-width:768px){
+.sec{padding:7rem 2rem}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.two{grid-template-columns:1fr 1fr;gap:4rem}.photo{height:480px}}
+@media(min-width:992px){
+.nav{padding:1.3rem 4rem}.burger{display:none}
+.links{position:static;width:auto;max-width:none;height:auto;background:none;border:0;flex-direction:row;gap:2.2rem}}
+
+/* Bangla text fixes + gallery */
+.links a,.btn,.kicker,.tag,.info b{letter-spacing:0}
+body{line-height:1.85}
+h1,h2,h3{line-height:1.35}
+.gal{display:grid;gap:1rem;grid-template-columns:1fr 1fr;margin-top:2rem}
+.gal div{height:300px;border:1px solid rgba(201,164,92,.3);background:center/cover no-repeat}
+@media(min-width:768px){.gal div{height:460px}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a href="#home" class="logo">NOIR</a>
+  <button class="burger" id="burger" aria-label="মেনু খুলুন" aria-expanded="false"><i></i><i></i><i></i></button>
+  <nav class="links" id="links">
+    <a href="#home">হোম</a><a href="#welcome">স্বাগতম</a><a href="#menu">মেনু</a>
+    <a href="#about">আমাদের কথা</a><a href="#offers">অফার</a><a href="#contact" class="cta">টেবিল বুক</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-in">
+    <p class="kicker">ফাইন ডাইনিং</p>
+    <h1>স্বাদের সাথে <em>আভিজাত্যের</em> মেলবন্ধন</h1>
+    <p>মোমবাতির আলোয় সাজানো সন্ধ্যায় যত্নে রান্না করা অসাধারণ খাবারের অভিজ্ঞতা নিন।</p>
+    <a href="#contact" class="btn">টেবিল বুক করুন</a>
+  </div>
+</section>
+
+<section class="sec alt" id="welcome">
+  <div class="wrap center rv">
+    <h2>NOIR-এ স্বাগতম</h2><div class="line"></div>
+    <p style="max-width:650px;margin:0 auto;color:var(--muted)">NOIR-এ প্রতিটি খাবারের আছে নিজস্ব গল্প। আমাদের শেফরা মৌসুমি তাজা উপকরণ আর নিপুণ হাতের রান্নায় তৈরি করেন এমন স্বাদ, যা আপনার প্রতিটি ইন্দ্রিয়কে খুশি করবে।</p>
+  </div>
+</section>
+
+<section class="sec" id="menu">
+  <div class="wrap">
+    <div class="center rv"><h2>আমাদের বিশেষ মেনু</h2><div class="line"></div></div>
+    <div class="grid g2">
+      <article class="dish rv"><div style="overflow:hidden"><div class="pic" style="background-image:url('grill.jpg')"></div></div><div class="box"><div class="row"><h3>মিক্সড গ্রিল প্ল্যাটার</h3><span class="price">৳১,২৫০</span></div><p>কয়লায় গ্রিল করা স্টেক, মুরগি ও রিব, সাথে ফ্রেঞ্চ ফ্রাই, সালাদ আর বিশেষ সস।</p></div></article>
+      <article class="dish rv"><div style="overflow:hidden"><div class="pic" style="background-image:url('scallop.jpg')"></div></div><div class="box"><div class="row"><h3>সিয়ার্ড স্ক্যালপ</h3><span class="price">৳১,৪৫০</span></div><p>মটরশুঁটির পিউরির ওপর সোনালি ভাজা স্ক্যালপ, মাখনের সস আর তাজা ডিল।</p></div></article>
+      <article class="dish rv"><div style="overflow:hidden"><div class="pic" style="background-image:url('seafood.jpg')"></div></div><div class="box"><div class="row"><h3>ফিশ ও চিংড়ি ফিলে</h3><span class="price">৳১,৩৫০</span></div><p>সবজি মেশানো গমের দানার ওপর গ্রিল করা মাছ ও চিংড়ি, সাথে অ্যাসপারাগাস।</p></div></article>
+      <article class="dish rv"><div style="overflow:hidden"><div class="pic" style="background-image:url('chocolate.jpg')"></div></div><div class="box"><div class="row"><h3>চকোলেট ডোম</h3><span class="price">৳৪৫০</span></div><p>ডার্ক চকোলেটের খোলস, ভেতরে নরম চকোলেট মুস আর গলানো চকোলেট সস।</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="about">
+  <div class="wrap two">
+    <div class="photo rv" style="background-image:url('chef.jpg');background-position:center 25%"></div>
+    <div class="rv">
+      <h2>আমাদের রেস্টুরেন্ট সম্পর্কে</h2><div class="line l"></div>
+      <p>২০১৫ সালে NOIR শুরু হয়েছিল একটি বিশ্বাস নিয়ে: খাবার খাওয়া হওয়া উচিত একটি শিল্প। আমাদের অভিজ্ঞ শেফরা সেরা দেশি ও বিদেশি উপকরণ বেছে নিয়ে মৌসুম অনুযায়ী মেনু সাজান।</p>
+      <p>রান্নাঘরের আগুন থেকে টেবিলের সাজসজ্জা, প্রতিটি খুঁটিনাটি আমরা ঠিক করি যাতে আপনার সন্ধ্যা হয় স্মরণীয়।</p>
+      <div class="stats"><div><b>১০+</b><span>বছরের অভিজ্ঞতা</span></div><div><b>২৫</b><span>পুরস্কার</span></div><div><b>৩</b><span>শেফ</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="center rv"><h2>আমাদের পরিবেশ</h2><div class="line"></div>
+      <p style="color:var(--muted)">সবুজে ঘেরা সিলিং আর বেতের বাতির নরম আলোয় আপনার সন্ধ্যা হবে আরও আপন।</p></div>
+    <div class="gal rv"><div style="background-image:url('interior.jpg')"></div><div style="background-image:url('lamps.jpg')"></div></div>
+  </div>
+</section>
+
+<section class="sec alt" id="offers">
+  <div class="wrap">
+    <div class="center rv"><h2>বিশেষ অফার</h2><div class="line"></div></div>
+    <div class="grid g3">
+      <div class="offer rv"><h3>সেট মেনু</h3><p class="big">৳২,৫০০ <small>জনপ্রতি</small></p><p>সাত কোর্সের পূর্ণ খাবার।</p></div>
+      <div class="offer hot rv"><span class="tag">সবচেয়ে জনপ্রিয়</span><h3>কাপল ডিনার</h3><p class="big">৳৪,৫০০ <small>দুজনের জন্য</small></p><p>তিন কোর্স খাবার, একটি ড্রিংক আর ভাগ করে খাওয়ার ডেজার্ট।</p></div>
+      <div class="offer rv"><h3>শুক্রবারের ব্রাঞ্চ</h3><p class="big">৳১,২০০ <small>জনপ্রতি</small></p><p>সকাল ১১টা থেকে ৩টা পর্যন্ত আনলিমিটেড ব্রাঞ্চ।</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap two" style="align-items:start">
+    <div class="rv">
+      <h2>যোগাযোগ ও টেবিল বুকিং</h2><div class="line l"></div>
+      <ul class="info">
+        <li><b>ঠিকানা</b>১২৩ গোল্ডেন অ্যাভিনিউ, আপনার শহর</li>
+        <li><b>ফোন</b><a href="tel:+8801700000000">+৮৮০ ১৭০০ ০০০০০০</a></li>
+        <li><b>ইমেইল</b><a href="mailto:reservations@noir.com">reservations@noir.com</a></li>
+        <li><b>খোলার সময়</b>প্রতিদিন দুপুর ১২টা থেকে রাত ১১টা</li>
+      </ul>
+    </div>
+    <form id="form" class="rv">
+      <input type="text" id="name" placeholder="আপনার নাম" required>
+      <input type="tel" id="phone" placeholder="মোবাইল নম্বর" required>
+      <input type="date" id="date" required>
+      <select id="guests" required><option value="" disabled selected>কতজন আসবেন</option><option>১ থেকে ২ জন</option><option>৩ থেকে ৪ জন</option><option>৫ থেকে ৬ জন</option><option>৭ জন বা বেশি</option></select>
+      <button class="btn" type="submit">বুকিং অনুরোধ পাঠান</button>
+      <p id="msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <a href="#home" class="logo">NOIR</a>
+  <p>স্বাদের নতুন ঠিকানা।</p>
+  <div class="soc"><a href="#">ইনস্টাগ্রাম</a><a href="#">ফেসবুক</a><a href="#">ইউটিউব</a></div>
+  <small>© <span id="yr"></span> NOIR রেস্টুরেন্ট। সর্বস্বত্ব সংরক্ষিত।</small>
+</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const nav=$('nav'),burger=$('burger'),links=$('links'),items=links.querySelectorAll('a');
+function menu(open){links.classList.toggle('on',open);burger.classList.toggle('on',open);burger.setAttribute('aria-expanded',open);document.body.style.overflow=open?'hidden':''}
+burger.onclick=()=>menu(!links.classList.contains('on'));
+items.forEach(a=>a.onclick=()=>menu(false));
+const scrolled=()=>nav.classList.toggle('solid',scrollY>50);
+addEventListener('scroll',scrolled,{passive:true});scrolled();
+const secObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)items.forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>secObs.observe(s));
+const rvObs=new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
+$('date').min=new Date().toISOString().split('T')[0];
+$('form').onsubmit=e=>{e.preventDefault();$('msg').textContent='ধন্যবাদ, '+$('name').value.trim()+'। বুকিং নিশ্চিত করতে আমরা শীঘ্রই আপনাকে ফোন করব।';e.target.reset()};
+$('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
